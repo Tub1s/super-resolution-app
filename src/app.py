@@ -1,20 +1,27 @@
 import streamlit as st
+
 from features.home_page import show_home_page
-from features.import_data_page import show_import_data_page
-from features.modify_data_page import show_modify_data_page
-from features.download_data_page import show_download_data_page
+from features.main_app_page import show_main_app_page
 
-page_sidebar = st.sidebar.selectbox("App Navigation", ("Home", "Load data", "Test algorithms", "Download"), index=0)
 
-if page_sidebar == "Home":
-    show_home_page()
+def main():
+    if "page" not in st.session_state:
+        st.session_state.update({
+            "page": "home",
+        })
 
-elif page_sidebar == "Load data":
-    show_import_data_page()
+    page_sidebar = st.sidebar.selectbox("App Navigation", ("Home", "Application"), index=0)
 
-elif page_sidebar == "Test algorithms":
-    show_modify_data_page()
+    if page_sidebar == "Home":
+        show_home_page()
 
-elif page_sidebar == "Download":
-    show_download_data_page()
+    elif page_sidebar == "Application":
+        show_main_app_page()
+
+if __name__ == "__main__":
+    main()
+
+    
+
+
 
