@@ -1,14 +1,6 @@
 import streamlit as st
-import numpy as np
-import cv2
-import scaling
-from PIL import Image 
+from features.scaling import read_data
 
-
-@st.cache
-def load_image(image_file):
-    img = Image.open(image_file)
-    return img
 
 def show_main_app_page():
     st.title("Application page")
@@ -36,14 +28,6 @@ def show_main_app_page():
                     if choice:
                         uploaded_files = [file for file in uploaded_files if file.name in files]
                         st.button("This is button!")
-
-                #for file in uploaded_files:
-                    #st.write(f"{file.name}")
-            
-                #st.write(os.path.join("/data/external/", file.name))
-                #with open(file.name, 'wb') as f:
-                    #f.write(file.getbuffer())
-                #st.success("Saved File!")
 
     with col2:
         st.write("Hehe")
