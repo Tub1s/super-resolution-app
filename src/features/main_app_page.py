@@ -1,6 +1,6 @@
 import streamlit as st
-from features.scaling import read_data
-
+from features.scaling import upscale
+from PIL import Image 
 
 def show_main_app_page():
     st.title("Application page")
@@ -27,7 +27,10 @@ def show_main_app_page():
 
                     if choice:
                         uploaded_files = [file for file in uploaded_files if file.name in files]
-                        st.button("This is button!")
-
+                        st.write(type(uploaded_files[0]))
+                        if st.button(label='Test'):
+                            image = upscale(uploaded_files[0], 'test', 1.1)
+                            image = Image.open(image)
+                            st.image(image)
     with col2:
         st.write("Hehe")
