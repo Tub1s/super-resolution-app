@@ -1,5 +1,6 @@
 import streamlit as st
 from features.scaling import upscale
+from cv2 import INTER_LINEAR, INTER_CUBIC, INTER_NEAREST, INTER_LANCZOS4
 from PIL import Image 
 
 def show_main_app_page():
@@ -12,7 +13,10 @@ def show_main_app_page():
     '.jpg', '.jpeg', '.png', '.gif', '.webp', '.bmp'
     ]
 
-    LIST_OF_ALGORITHMS = ['Bilinear', 'Bicubic']
+    UPSCALING_ALGORITHMS = {'Bilinear': INTER_LINEAR, 
+                          'Bicubic': INTER_CUBIC, 
+                          'Nearest Neighbour': INTER_NEAREST, 
+                          'Lanczos4': INTER_LANCZOS4}
 
     with col1:
         with st.expander("Import data"):
@@ -23,14 +27,15 @@ def show_main_app_page():
                 files = st.multiselect("Choose files that you want to process: ", list_of_file_names)
                 
                 if files:
-                    choice = st.multiselect("Choose algorithm you want to apply: ", LIST_OF_ALGORITHMS)
+                    choice = st.multiselect("Choose algorithm you want to apply: ", UPSCALING_ALGORITHMS.keys())
+                    upscaling_ratio = st.number_input("Upscaling ratio", min_value=1.0, max_value=4.0)
 
                     if choice:
                         uploaded_files = [file for file in uploaded_files if file.name in files]
-                        st.write(type(uploaded_files[0]))
-                        if st.button(label='Test'):
-                            image = upscale(uploaded_files[0], 'test', 1.1)
-                            image = Image.open(image)
-                            st.image(image)
+        
+                        if st.button(label='Apply'):
+                            img = upscale(uploaded_files[0], UPSCALING_ALGORITHMS[choice[0]], upscaling_ratio)
+                            #image = Image.open(image)
+                            st.image(img)
     with col2:
-        st.write("Hehe")
+        st.write("Test")
