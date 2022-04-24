@@ -5,11 +5,6 @@ from features.main_app_page import show_main_app_page
 
 
 def main():
-    if "page" not in st.session_state:
-        st.session_state.update({
-            "page": "home",
-        })
-
     page_sidebar = st.sidebar.selectbox("App Navigation", ("Home", "Application"), index=0)
 
     if page_sidebar == "Home":

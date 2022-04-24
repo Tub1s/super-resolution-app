@@ -28,6 +28,8 @@ def upscale(data: UploadedFile, algorithm: Union[str, List[str]],
         BytesIO: upscaled image in byte format
     """
 
+    # TODO: Add support for none cv2 upscale options
+
     img_array = read_data(data=data)
     img = cv2.imdecode(img_array, cv2.IMREAD_COLOR)
     img = cv2.resize(img, None, fx=upscaling_ratio, 

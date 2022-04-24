@@ -52,6 +52,8 @@ def show_main_app_page():
         # TODO: Add juxtapose scrolling comparisons
         with st.container():
             if show_results:
-                for uploaded_file in uploaded_files:
-                    for choice in choices:
-                        st.image(result_images[choice][uploaded_file.name])
+                juxtapose('test1.png', 'test2.png')
+                # for uploaded_file in uploaded_files:
+                    # for choice in choices:
+                        # st.image(result_images[choice][uploaded_file.name])
+                
