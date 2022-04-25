@@ -3,6 +3,7 @@ import streamlit as st
 from features.home_page import show_home_page
 from features.main_app_page import show_main_app_page
 
+st.set_page_config(page_title = "Image upscaler", layout="wide")
 
 def main():
     page_sidebar = st.sidebar.selectbox("App Navigation", ("Home", "Application"), index=0)
