@@ -2,9 +2,7 @@ import streamlit as st
 from streamlit_image_comparison import image_comparison
 from features.scaling import upscale
 from cv2 import INTER_LINEAR, INTER_CUBIC, INTER_NEAREST, INTER_LANCZOS4
-from PIL import Image
 import itertools
-import copy
 
 
 def show_main_app_page():
