@@ -1,10 +1,8 @@
-super-resolution-app
-==============================
+# super-resolution-app
 
 Project of image up-scaling app utiziling Super Resolution techniques for "Uczenie maszynowe w animacjach" course
 
-Project Organization
-------------
+## Project Organization
 
     ├── LICENSE
     ├── Makefile           <- Makefile with commands like `make data` or `make train`
@@ -51,7 +49,9 @@ Project Organization
     │
     └── tox.ini            <- tox file with settings for running tox; see tox.readthedocs.io
 
-
---------
+---
 
 <p><small>Project based on the <a target="_blank" href="https://drivendata.github.io/cookiecutter-data-science/">cookiecutter data science project template</a>. #cookiecutterdatascience</small></p>
+
+ESRGAN Model Location:
+https://drive.google.com/file/d/1c_a7ZjDbmfTeKcFWQeY1Z1N2cffRl9AJ/view?usp=sharing
