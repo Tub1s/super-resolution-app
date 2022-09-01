@@ -28,15 +28,15 @@ def show_main_app_page():
                           'Bicubic': INTER_CUBIC, 
                           'Nearest Neighbour': INTER_NEAREST, 
                           'Lanczos4': INTER_LANCZOS4,
-                          'ESRGAN': 'ESRGAN',
-                          'convt': 'convt'}
+                          'ESRGAN': 'ESRGAN'}
+                          #'convt': 'convt'}
 
     st.title("Application page")
 
     list_of_file_names = list()
     show_results = False
     
-    #! Code responsible for processing data
+    # Code responsible for processing data
     with st.container():
         with st.expander("Import data"):
             uploaded_files = st.file_uploader(label = "Choose image files:", type = IMAGE_TYPES_LIST, accept_multiple_files=True)
@@ -65,8 +65,7 @@ def show_main_app_page():
                             show_results = True
 
         
-        # TODO: Maybe add original picture side by side comparison
-        #! Code responsible for displaying all results
+        # Code responsible for displaying all results
         with st.container():
             st.header("Results")
             if not show_results:
@@ -97,14 +96,6 @@ def show_main_app_page():
                     for file in uploaded_files:
                         st.subheader(f"Image: {file.name}")
                         for disp_perm in final_permutations:
-                            # t = result_images[disp_perm[1]][file.name]*255
-                            # t = t.astype("uint8") 
-                            #st.write(result_images[disp_perm[0]][file.name][0][0])
-                            #st.write(t)
-                            # st.write(result_images[disp_perm[0]][file.name].shape)
-                            # st.write(result_images[disp_perm[1]][file.name].shape)
-                            # st.write(result_images[disp_perm[0]][file.name + "_org"].shape)
-                            # st.write(result_images[disp_perm[1]][file.name + "_org"].shape)
                             with st.expander(label=f"{disp_perm[0]} vs {disp_perm[1]}"):
                                 st.image((cv2.cvtColor(result_images[choices[0]][file.name + "_org"], cv2.COLOR_BGR2RGB)),
                                 caption=f"Original image {file.name.split('.')[0]}")
@@ -122,11 +113,6 @@ def show_main_app_page():
                                 if (org_shape_0 == shape_0) and (org_shape_1 == shape_1):
                                     mse_0 = mse(result_images[disp_perm[0]][file.name + "_org"], result_images[disp_perm[0]][file.name])
                                     mse_1 = mse(result_images[disp_perm[0]][file.name + "_org"], result_images[disp_perm[1]][file.name])
-                                    #ssim_0 = ssim(result_images[disp_perm[0]][file.name + "_org"], result_images[disp_perm[0]][file.name])
-                                    #ssim_1 = ssim(result_images[disp_perm[0]][file.name + "_org"],result_images[disp_perm[1]][file.name])
                                     st.write(f"{disp_perm[0]} MSE: {mse_0}")
-                                    #st.write(f"{disp_perm[0]} SSIM: {ssim_0}")
                                     st.write(f"{disp_perm[1]} MSE: {mse_1}")
-                                    #st.write(f"{disp_perm[1]} SSIM: {ssim_1}")
                             st.write("\n")
-                    # mse(result_images[disp_perm[0]][file.name + "_org"], result_images[disp_perm[0]][file.name])

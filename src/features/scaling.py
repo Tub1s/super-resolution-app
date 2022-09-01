@@ -1,10 +1,7 @@
-from this import d
 from streamlit.uploaded_file_manager import UploadedFile
-import streamlit as st
 import cv2
 import numpy as np
 import torch
-import os
 from PIL import Image
 from torchvision import transforms
 import features.esrgan as esrgan
@@ -26,8 +23,7 @@ def read_data(data: UploadedFile) -> np.ndarray:
 
     return result
 
-def upscale(data: UploadedFile, algorithm: Union[int, str], 
-            upscaling_ratio: float) -> np.ndarray:
+def upscale(data: UploadedFile, algorithm: Union[int, str], upscaling_ratio: float) -> np.ndarray:
     """
     Function performs upscaling on input imagefile by applying chosen upscaling method.
 
@@ -39,9 +35,6 @@ def upscale(data: UploadedFile, algorithm: Union[int, str],
     Returns:
         BytesIO: upscaled image in byte format
     """
-
-    # TODO: Add support for none cv2 upscale options
-
 
     if type(algorithm) == int:
         img_array = read_data(data=data)
@@ -74,6 +67,7 @@ def upscale(data: UploadedFile, algorithm: Union[int, str],
             img = convt_super_resolution(convt.CONVT_MODEL_PATH, img)
             img = img * 255
             img = img.astype('uint8')
+
     return img, img_org
 
 
@@ -93,10 +87,6 @@ def convt_super_resolution(model_path: str, image):
 
 
 def image_super_resolution(model_path: str, image):
-    # means = [np.mean(image[:,:][i]) for i in range(image.shape[-1])]
-    # stds = [np.std(image[:,:][i]) for i in range(image.shape[-1])]
-    # print(means)
-    # print(stds)
     channels = 3
     residual_blocks = 23
 
@@ -111,8 +101,7 @@ def image_super_resolution(model_path: str, image):
     
     transform = transforms.Compose(
         [transforms.ToTensor(), transforms.Normalize(esrgan.ESRGAN_MEAN, esrgan.ESRGAN_STD)])
-    # transform = transforms.Compose(
-    #     [transforms.ToTensor(), transforms.Normalize(means, stds)])
+
     # Prepare input
     image_tensor = Variable(transform(image)
                             ).to(device).unsqueeze(0)

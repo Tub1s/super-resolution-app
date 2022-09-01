@@ -6,7 +6,7 @@ import os
 
 ESRGAN_MEAN = np.array([0.485, 0.456, 0.406])
 ESRGAN_STD = np.array([0.229, 0.224, 0.225])
-ESRGAN_MODEL_PATH = "/home/senuki/university_coding/super-resolution-app/models/ESRGAN/generator_7.pth"
+ESRGAN_MODEL_PATH = "../../models/ESRGAN/generator_7.pth"
 
 
 class FeatureExtractor(nn.Module):
@@ -136,6 +136,5 @@ def denormalize(tensors):
 
     for c in range(3):
         tensors[:, c].mul_(ESRGAN_STD[c]).add_(ESRGAN_MEAN[c])
-        # tensors[:, c].mul_(means[c]).add_(stds[c])
     
     return torch.clamp(tensors, 0, 255)

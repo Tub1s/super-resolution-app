@@ -6,7 +6,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 
-CONVT_MODEL_PATH = "/home/senuki/university_coding/super-resolution-app/models/ConvT/convt.h5"
+CONVT_MODEL_PATH = "../../models/ConvT/convt.h5"
+
 
 def convt(dim):
   print(dim)
