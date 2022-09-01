@@ -6,3 +6,4 @@ def show_home_page():
     st.write("This application lets you upload up to 200MB of pictures and upscale them using multitude of techniques and algorithms!")
     st.write("List of currently available algorithms is as follows:")
     st.write("Nearest Neighbour, Bilinear, Bicubic, Lanczos4, ESRGAN (custom training) and ConvT (custom model).")
+    

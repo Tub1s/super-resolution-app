@@ -119,3 +119,4 @@ def show_main_app_page():
                                     st.write(f"{disp_perm[0]} MSE: {mse_0}")
                                     st.write(f"{disp_perm[1]} MSE: {mse_1}")
                             st.write("\n")
+                            

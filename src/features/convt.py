@@ -8,7 +8,6 @@ import cv2
 
 CONVT_MODEL_PATH = "../../models/ConvT/convt.h5"
 
-
 def convt(dim):
   print(dim)
 
@@ -25,4 +24,3 @@ def convt(dim):
   model.add(Conv2D(3, kernel_size=(3, 3), activation='linear', padding='same'))
   model.summary()
   return model
-
