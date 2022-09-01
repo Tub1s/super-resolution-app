@@ -106,10 +106,13 @@ def show_main_app_page():
                                                  width = result_images[disp_perm[0]][file.name + "_org"].shape[0] + 10
                                                  )
 
+                                # If shapes of upscaled images are equal to shape of original, calculate MSE for each method
+                                # This is the most basic way to compare upscaling methods
                                 org_shape_0 = result_images[disp_perm[0]][file.name + "_org"].shape
                                 shape_0 = result_images[disp_perm[0]][file.name].shape
                                 org_shape_1 = result_images[disp_perm[1]][file.name + "_org"].shape
                                 shape_1 = result_images[disp_perm[1]][file.name].shape
+
                                 if (org_shape_0 == shape_0) and (org_shape_1 == shape_1):
                                     mse_0 = mse(result_images[disp_perm[0]][file.name + "_org"], result_images[disp_perm[0]][file.name])
                                     mse_1 = mse(result_images[disp_perm[0]][file.name + "_org"], result_images[disp_perm[1]][file.name])
