@@ -91,3 +91,6 @@ target/
 
 # other types
 models/
+temp/
+data/
+ESRGAN/
